@@ -1,0 +1,8 @@
+[kwin]
+Window Close=Meta+Q
+
+[services][launcher.desktop]
+_launch=Meta+S
+
+[services][uwsm-stop.desktop]
+_launch=Meta+Shift+Q

@@ -1,71 +1,53 @@
-# cachyos-compositor-settings
+# cachyos-kwin-settings
 
-General settings for Wayland compositors.
+[**KWin**](https://github.com/KDE/kwin) is KDE Plasma's compositor.
 
 Dependencies:
 
 ```Sh
-adw-gtk-theme
-kitty
-qt6ct
-xdg-desktop-portal
-bibata-cursor-theme
-uwsm
-thunar
-noto-fonts
-noto-fonts-emoji
-gnome-keyring
-xdg-desktop-portal-gtk
-xdg-terminal-exec
-kanshi
+kwin xdg-desktop-portal-kde libkscreen polkit-kde-agent qt6-tools
 ```
 
 ## Reposotiry tree
 
-### Path [`.config/autostart/`](./etc/skel/.config/autostart/)
+### Path [`.config/`](./etc/skel/.config/)
+
+KWin settings are not read from it's own directory - they are pulled from `kwin`-* / `k`-* files in `~/.config` directory.
 
 | config | purpose |
-| - | - |
-| [kanshi.desktop](./etc/skel/.config/autostart/kanshi.desktop) | UWSM managed XDG Autostart for Kanshi daemon |
-| [noctalia.desktop](./etc/skel/.config/autostart/noctalia.desktop) | UWSM managed XDG Autostart for Noctalia Shell |
-| - | - |
-
-1. `kanshi` is universal Wayland monitors and profiles managing daemon.
-2. `nocatalia` is Wayland widgets framework. Same as `kanshi`.
-
-You can write your own `.desktop` file with lesser amount of lines, this files are references for "best case scenario".
-
-You can make their `systemd` service override in `.config/systemd/user/app-<name>@autostart.service.d/slice.conf`. We do not provide overrides for sake of compatability.
-
-### Paths [`.config/gtk-3.0/`](./etc/skel/.config/gtk-3.0/) and [`.config/gtk-4.0/`](./etc/skel/.config/gtk-4.0/)
-
-Both setting.ini are looks of `GTK` apps, hence versioned 3.0 and 4.0.
-
-### Path  [`.config/kanshi/`](./etc/skel/.config/kanshi/)
-
-Kanshi is a Wayland Displays and Profiles Manager. [This](./etc/skel/.config/kanshi/config) conifg file contains default profile and catch-all preset for prefered display settings.
-
-### Path [`.config/kitty/`](./etc/skel/.config/kitty)
-
-Kitty is GPU based feature-rich terminal emulator. [`Config`](./etc/skel/.config/kitty/kitty.conf) contains few config lines since `kitty` does not require much of configuration.
-
-### Path [`.config/uwsm/env.d/`]
-
-UWSM also manages proper `environment` exporting. [`Env`](./etc/skel/.config/uwsm/env.d/env/) makes it easier to deattach all the environments from compositors and also follows logic of basic `env` files.
-
+| ------ | ------- |
+| [`kwinrc`](./etc/skel/.config/kwinrc) | kwin's basics; amount of desktops, compositing |
+| [`kxkbrc`](./etc/skel/.config/kxkbrc) | KDE Plasma XKB Settings; layouts, variant, compose key|
+| [`kwinrulesrc`](./etc/skel/.config/kwinrulesrc) | kwin's composing rules; window rules |
+| [`kglobalshortcutsrc`](./etc/skel/.config/kglobalshortcutsrc) | KDE Plasma shortcuts; laucnher, session quit |
+              
 ### Path [`.config/xdg-desktop-portal/`](./etc/skel/.config/xdg-desktop-portal/)
 
-XDG Desktop Portal directive. Contains [`portals.conf`](./etc/skel/.config/xdg-desktop-portal/portals.conf) with default `gtk` portal as fallback and no `impl`. With installed compositors you gonna have `<compositor>-portals.conf` for per-compositor settings.
+KWin being KDE Plasma compositor is only compatable with `xdg-desktop-portal-kde`, declared in [`kwin-portals.conf`](./etc/skel/.config/xdg-desktop-portal/kwin-portals.conf).
 
-### Path [`.config/xdg-terminals.list`](./etc/skel/.config/xdg-terminals.list)
+### Path [`.config/autostart/`](./etc/skel/.config/autostart/)
 
-XDG Terminal Exec directive. UWSM uses it for `uwsm-app -T` and `Terminal=true` in `.desktop` entries. You can list / remove your prefered terminal ot use, `list` scans for desktop entry of listed terminal before starting one.
+KDE Plasma provides it's own KDE Plasma Polkit Agent. Since we are using XDG Desktop Portal from KDE we must use [`kde-polkit-agent.desktop`](./etc/skel/.config/autostart/kde-polkit-agent.desktop).
 
-### Path [`.config/mimeapps.list`](./etc/skel/.config/mimeapps.list)
+### Path [`.config/uwsm/env.d/`](./etc/skel/.config/uwsm/env.d/)
 
-MIME apps is XDG Specification on default apps per MIME type. Currently listed only `Thunar` as File Manager. you can use `xdg-open` for both querying and opening with listed MIME apps.
+KDE Plasma sets up ceratin variables, so we are in [`env-kwin`](./etc/skel/.config/uwsm/env.d/env-kwin).
+
+### Path [`.local/share/applications/`](./etc/skel/.local/share/applications/)
+
+KDE Plasma starts with `startplasma-wayland` which start essential to KDE daemons.
+
+| path | purpose |
+| - | - |
+| [`laucnher.desktop`](./etc/skel/.local/share/applications/launcher.desktop) | your launcher; we ship configured with noctalia |
+| [`uwsm-stop.desktop`](./etc/skel/.local/share/applications/uwsm-stop.desktop) | UWSM managed grace shutdown |
+
+`kglobalshortcutsrc` runs desktop entries on keybinds. We are shipping bare minimum for usability.
+
+### Path [`/usr/share/wayland-sessions/`](./usr/share/wayland-sessions/)
+
+KWin is not `kwin` as binary, nor it's an actual compositor. We are shipping `kwin-wayland` managed by UWSM in [`kwin-uwsm.desktop`](./usr/share/wayland-sessions/kwin-uwsm.desktop).
 
 <br/>
 
 Thank you for choosing CachyOS!
-

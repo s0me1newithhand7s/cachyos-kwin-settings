@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Log Out
+GenericName=End Wayland Session
+Categories=System;
+Keywords=logout;exit;quit;session;uwsm;
+Exec=uwsm stop
+Icon=system-log-out
+StartupNotify=false
+Terminal=false

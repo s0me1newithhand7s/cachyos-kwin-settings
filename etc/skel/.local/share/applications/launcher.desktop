@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Launcher
+GenericName=Application Launcher
+# this case - noctalia
+# put prefered under exec
+Exec=noctalia msg panel-toggle launcher
+Icon=system-search
+StartupNotify=false
+Terminal=false
+NoDisplay=true

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=KDE Polkit Agent
+GenericName=PolicyKit Authentication Agent
+Categories=System;Security;
+Keywords=wayland;polkit;auth;authentication;
+Exec=/usr/lib/polkit-kde-authentication-agent-1
+TryExec=/usr/lib/polkit-kde-authentication-agent-1
+Icon=dialog-password
+StartupNotify=false
+Terminal=false
+NoDisplay=true

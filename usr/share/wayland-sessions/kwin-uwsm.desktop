@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=KWin (UWSM)
+Exec=uwsm start -- kwin_wayland
+TryExec=uwsm
+DesktopNames=KDE
+Type=Application

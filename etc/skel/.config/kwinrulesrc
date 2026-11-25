@@ -1,0 +1,20 @@
+[1]
+Description=Center floating utility dialogs
+above=true
+aboverule=3
+placement=4
+placementrule=3
+types=32
+wmclasscomplete=false
+
+[2]
+Description=Allow tearing in fullscreen games
+allowtearing=true
+allowtearingrule=2
+fullscreen=true
+fullscreenrule=3
+types=1
+
+[General]
+count=2
+rules=1,2
