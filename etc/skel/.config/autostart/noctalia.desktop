@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Noctalia
+GenericName=Wayland Widgets
+Categories=Utility;
+Keywords=wayland;bar;widgets
+Exec=noctalia --daemon
+TryExec=nocatalia
+StartNotify=false
+Terminal=false

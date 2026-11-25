@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Kanshi
+GenericName=Wayland Output Manager
+Categories=Utility;
+Keywords=wayland;outputs;hotplug
+Exec=kanshi
+TryExec=kanshi
+StartupNotify=false
+Terminal=false
+Icon=display
+NoDisplay=true
